@@ -1,0 +1,19 @@
+openapi: 3.0.1
+info:
+  title: PrimeT-demo-mi-soap-api
+  description: API Definition of HelloWorld
+  version: 1.0.0
+servers:
+- url: http://localhost:8290/countries
+paths:
+  /{country}:
+    get:
+      parameters:
+      - name: country
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default response

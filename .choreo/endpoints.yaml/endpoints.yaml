@@ -1,0 +1,8 @@
+version: 1.0
+endpoints:
+  - name: PrimeT-demo-mi-soap-api
+    port: 8290
+    type: REST
+    networkVisibility: Public
+    context: /demo
+    schemaFilePath: PrimeT-demo-mi-soap-api_openapi.yaml

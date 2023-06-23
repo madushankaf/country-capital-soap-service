@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/countries" name="PrimeT-demo-mi-soap-api" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/{country}">
+        <inSequence>
+            <property expression="get-property('uri.var.country')" name="country" scope="default" type="STRING"/>
+            <log level="custom">
+                <property expression="$ctx:country" name="Country: "/>
+            </log>
+            <payloadFactory media-type="xml">
+                <format>
+                    <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+                        <soap:Body>
+                            <CapitalCity xmlns="http://www.oorsprong.org/websamples.countryinfo">
+                                <sCountryISOCode>$1</sCountryISOCode>
+                            </CapitalCity>
+                        </soap:Body>
+                    </soap:Envelope>
+                </format>
+                <args>
+                    <arg evaluator="xml" expression="$ctx:country"/>
+                </args>
+            </payloadFactory>
+            <header name="Action" scope="default" value="urn:getQuote"/>
+            <send>
+                <endpoint>
+                    <address format="soap11" uri="http://webservices.oorsprong.org/websamples.countryinfo/CountryInfoService.wso">
+                        <suspendOnFailure>
+                            <initialDuration>-1</initialDuration>
+                            <progressionFactor>1</progressionFactor>
+                        </suspendOnFailure>
+                        <markForSuspension>
+                            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+                        </markForSuspension>
+                    </address>
+                </endpoint>
+            </send>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </resource>
+</api>

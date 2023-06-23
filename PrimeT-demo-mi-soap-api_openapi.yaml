@@ -6,7 +6,7 @@ info:
 servers:
 - url: http://localhost:8290/demo
 paths:
-  /countries/{country}:
+  /capitalcity/{country}:
     get:
       parameters:
       - name: country

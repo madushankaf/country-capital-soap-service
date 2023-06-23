@@ -4,9 +4,9 @@ info:
   description: API Definition of HelloWorld
   version: 1.0.0
 servers:
-- url: http://localhost:8290/countries
+- url: http://localhost:8290/demo
 paths:
-  /{country}:
+  /countries/{country}:
     get:
       parameters:
       - name: country

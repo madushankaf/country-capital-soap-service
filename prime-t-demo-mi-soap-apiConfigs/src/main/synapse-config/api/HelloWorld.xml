@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<api context="/countries" name="PrimeT-demo-mi-soap-api" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="GET" uri-template="/{country}">
+<api context="/demo" name="PrimeT-demo-mi-soap-api" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/countries/{country}">
         <inSequence>
             <property expression="get-property('uri.var.country')" name="country" scope="default" type="STRING"/>
             <log level="custom">
